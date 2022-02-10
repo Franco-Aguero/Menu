@@ -13,7 +13,7 @@ const SearchBar = () => {
         alert(name)
     }
     return (
-        <Form onSubmit={handleSubmit} className="d-flex">
+        <Form onSubmit={handleSubmit} className="d-flex" style={{width:"250px", height:"2rem"}}>
             <FormControl
             type="search"
             placeholder="Search"

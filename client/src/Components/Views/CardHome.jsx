@@ -1,12 +1,22 @@
+import { useDispatch } from "react-redux";
+import { addHome, removeHome } from "../../Redux/Actions/Products";
 
-const CardHome = ({ name, image, features}) => {    //options view details and delete of menu
+const CardHome = ({ name, image, id, viewHome}) => {    //options view details and delete of menu
+    let dispatch = useDispatch();
+    const addingHome = () => dispatch( addHome({name,image,id})), removeOfHome = () => dispatch( removeHome(id)); 
     return (
-        <div class="col-3 d-print-flex justify-content-center" style={{width:"220px",}}>
-            <div class="card">
-            <img src={image} class="card-img-top" alt={name} style={{width:"200px", height:"200px", objectFit:"cover" , margin:".5rem auto 0"}}/>
-            <div class="card-body">
-                <h5 class="card-title text-center">{name}</h5>
-            </div>
+        <div className="col-3 d-print-flex justify-content-center" style={{width:"220px",}}>
+            <div className="card">
+                <img src={image} className="card-img-top" alt={name} style={{width:"200px", height:"200px", objectFit:"cover" , margin:".5rem auto 0"}}/>
+                <div className="card-body">
+                    <h5 className="card-title text-center">{name}</h5>
+                </div>
+            {
+                viewHome ?
+                    <button type="button" onClick={() => removeOfHome()} className="btn btn-outline-dark" style={{width:"80%", margin:"0 auto 8px"}}>Remove</button>
+                : 
+                    <button type="button" onClick={() => addingHome()} className="btn btn-outline-dark" style={{width:"80%", margin:"0 auto 8px"}}>Add to menu</button>
+            }    
             </div>
         </div>
     )
