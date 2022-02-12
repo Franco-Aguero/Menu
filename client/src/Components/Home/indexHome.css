@@ -1,0 +1,22 @@
+.ContainerScroll{
+    min-width:400px;
+    overflow:auto;
+    background:#ffffff;
+    padding:1rem;
+}
+.ContainerScroll::-webkit-scrollbar {
+    width: .6rem;
+}
+.ContainerScroll::-webkit-scrollbar-track{
+background: none;
+
+}
+.ContainerScroll::-webkit-scrollbar-thumb{
+background: black;
+border-radius: 6px;
+}
+
+/* .ContainerScroll__header{
+    height: 2rem;
+    background: red;
+} */

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Form, FormControl, Button } from "react-bootstrap";
 import { searchProduct } from "../../Redux/Actions/Products";
 
-const SearchBar = () => {
+const SearchBar = ({ handleClick }) => {
     let [name, setName] = useState(""), dispatch = useDispatch();
     const handleChange = (e) => setName(e.target.value)
     const handleSubmit = (e) => {
@@ -11,12 +11,13 @@ const SearchBar = () => {
         if(name.length <= 2) return;
         dispatch(searchProduct(name))
         alert(name)
+        handleClick()
     }
     return (
-        <Form onSubmit={handleSubmit} className="d-flex" style={{width:"250px", height:"2rem"}}>
+        <Form onSubmit={handleSubmit} className="d-flex" style={{width:"250px", height:"2.4rem"}}>
             <FormControl
             type="search"
-            placeholder="Search"
+            placeholder="Meal..."
             className="me-2"
             aria-label="Search"
             value={name}
