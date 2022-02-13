@@ -10,7 +10,6 @@ const SearchBar = ({ handleClick }) => {
         e.preventDefault();
         if(name.length <= 2) return;
         dispatch(searchProduct(name))
-        alert(name)
         handleClick()
     }
     return (

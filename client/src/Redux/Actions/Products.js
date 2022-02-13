@@ -52,7 +52,7 @@ export const removeHome = (id) => {
 export const getDetailProduct = (id) => {
     return async(dispatch) => {
         try {           
-            let { data } = axios.get(`das`)
+            let { data } = await axios.get(`https://api.spoonacular.com/food/products/${id}/?apiKey=${process.env.REACT_APP_API_KEY}`)
             dispatch({ type:GET_DETAIL_PRODUCT , payload: data})
         }   
         catch (error) { 

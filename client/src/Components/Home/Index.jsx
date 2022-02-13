@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import ImgDefault from "./menu.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -24,13 +25,16 @@ const Home = () => {
                     menuProducts?.length > 0 ?
                     <div className="d-grid justify-content-center" style={{margin:"2.5rem auto", paddingBottom:"2rem" , gridTemplateColumns:"repeat(3,auto)", rowGap:"1rem", columnGap:"2.5rem"}}>
                         {
-                        menuProducts.map( (el, index) => <CardHome
-                            key={index}
-                            viewHome={true}
-                            id={el.id}
-                            name={el.name}
-                            image={el.image}
-                            /> ) 
+                        menuProducts.map( (el, index) => 
+                            <Link to={`/details/${el.id}`} key={index} style={{textDecoration:"none", color:"black"}}>
+                                <CardHome
+                                    viewHome={true}
+                                    id={el.id}
+                                    name={el.name}
+                                    image={el.image}
+                                /> 
+                            </Link>
+                            ) 
                         }
                     </div>
                     : 
@@ -52,7 +56,7 @@ const Home = () => {
                 isOpenShow && 
                 <Modal isOpen={isOpenShow} closeModal={closeModalShow}>
                     <div className="d-flex text-center" style={{height:"2.5rem",background:"#ffff", borderBottom: "1px solid #dfdfdf"}}>
-                        <h4 style={{margin:"auto", cursor:"pointer"}} onClick={closeModalShow}>Cerrar</h4>
+                        <h4 style={{margin:"auto", cursor:"pointer"}} onClick={closeModalShow}>To close</h4>
                     </div>
                     <div className="ContainerScroll">
                         {
@@ -67,7 +71,7 @@ const Home = () => {
                                     /> ) 
                                 }
                             </div>
-                            : <h3 className="text-center" style={{margin:"1.5rem 0"}}>Sin resultados</h3>
+                            : <h3 className="text-center" style={{margin:"1.5rem 0"}}>Without results</h3>
                         }
                     </div>
                 </Modal>
@@ -76,31 +80,3 @@ const Home = () => {
     )
 }
 export default Home;
-
-
-
-
-
-/* 
-<div style={{display:"flex"}}>
-                <Accordion defaultActiveKey={['0']} alwaysOpen style={{width:"730px"}}>
-                    <Accordion.Item eventKey="1" >
-                        <Accordion.Header className="text-center" >Resultados</Accordion.Header>
-                        <Accordion.Body className="d-grid justify-content-center" style={{gridTemplateColumns:"repeat(3,auto)", rowGap:"1rem", columnGap:"1rem"}}>                  
-                            {
-                                searchProducts?.length > 0 ?
-                                searchProducts.map( el => <CardHome
-                                    key={el.id}
-                                    id={el.id}
-                                    name={el.title}
-                                    image={el.image}
-                                /> ) 
-                                : <span>Sin resultados</span>
-                            }
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
-
-                
-            </div>
-*/

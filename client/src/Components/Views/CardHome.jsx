@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addHome, removeHome } from "../../Redux/Actions/Products";
 
 const CardHome = ({ name, image, id, viewHome}) => {    //options view details and delete of menu
@@ -15,9 +16,11 @@ const CardHome = ({ name, image, id, viewHome}) => {    //options view details a
                 </div>
             {
                 viewHome ?
-                    <button type="button" onClick={() => removeOfHome(id)} className="btn btn-outline-dark" style={{width:"80%", margin:"0 auto 8px"}}>Remove</button>
+                <Link to="/home" style={{width:"80%",margin:"0 auto 8px"}} >
+                    <button type="button" onClick={() => removeOfHome(id)} className="btn btn-outline-dark" style={{width:"100%", }}>Remove</button>
+                </Link>
                 : 
-                    <button type="button" onClick={() => addingHome()} className="btn btn-outline-dark" style={{width:"80%", margin:"0 auto 8px"}}>Add to menu</button>
+                <button type="button" onClick={() => addingHome()} className="btn btn-outline-dark" style={{width:"80%", margin:"0 auto 8px"}}>Add to menu</button>
             }    
             </div>
         </div>

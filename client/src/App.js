@@ -11,7 +11,7 @@ function App() {
       <Route path="/" component={Nav} />
       <Route path="/login" component={Login} />
       <Route path="/home" component={Home} />
-      <Route path="/details/:id" component={DetailProduct}/>
+      <Route path="/details/:id" render={ ({match}) => {return <DetailProduct id={match.params.id}/> }} />
     </div>
   )
 }
