@@ -5,7 +5,8 @@ export const sendLogin = (info) => {
     return async() => {
         try {
             let { data } = await axios.post(`http://challenge-react.alkemy.org/`, info)
-            alert("logeo exitoso")
+            localStorage.setItem("tokenMenu", data.token);
+            window.location.assign(`${process.env.REACT_APP_URL_CLIENT}/home`);
         }   
         catch (error) { 
             Swal.fire({

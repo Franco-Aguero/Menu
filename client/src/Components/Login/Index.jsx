@@ -16,21 +16,24 @@ const Login = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit} className="d-flex flex-column col-4" >
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" name="email" value={state.email} onChange={handleChange} placeholder="Enter email" />
-      </Form.Group>
+    <article className='d-flex justify-content-center align-items-center' style={{height:"calc(100vh - 2.6rem)"}}>
+      <Form onSubmit={handleSubmit} className='d-flex flex-column w-100' style={{maxWidth:"370px"}}>
+        <h2 className="text-center mb-4">Log In</h2>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" name="email" value={state.email} onChange={handleChange} placeholder="Enter email" />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" name="password" value={state.password} onChange={handleChange} placeholder="Password" />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" name="password" value={state.password} onChange={handleChange} placeholder="Password" />
+        </Form.Group>
 
-      <button type="submit" className="btn btn-outline-success">
-        Submit
-      </button>
-    </Form>
+        <button type="submit" className="btn btn-outline-success">
+          Submit
+        </button>
+      </Form>
+    </article>
   );
 }
 
