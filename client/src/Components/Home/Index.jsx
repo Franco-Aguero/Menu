@@ -8,10 +8,19 @@ import CardHome from "../Views/CardHome";
 import { useModal } from "../Modal/useModal";
 import Modal from "../Modal/modal";
 import "./indexHome.css"
+import { useEffect, useState } from "react";
+import utils from "../utils";
 const Home = () => {
     let searchProducts = useSelector( state => state.Products.searchProduct.products);
     let menuProducts = useSelector( state => state.Products.homeProduct);
-    let [isOpenShow, openModalShow, closeModalShow] = useModal(false);
+    let [isOpenShow, openModalShow, closeModalShow] = useModal(false), 
+    [togleFlag, setTogleFlag] = useState(true),
+    {addSomethingLocalStorage} = utils;
+    useEffect( () => {
+        if(togleFlag) return setTogleFlag( togleFlag = false );
+        addSomethingLocalStorage("cart", menuProducts)
+        console.log("se mando")
+    },[menuProducts])
     return (
         <article className="d-flex flex-column" style={{height: "calc(100vh - 2.6rem)"}}>
             <div className="d-flex justify-content-end" style={{margin:"1rem 3rem 0 0"}}>

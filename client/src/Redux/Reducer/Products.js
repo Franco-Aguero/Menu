@@ -1,7 +1,10 @@
 import { ADD_HOME, GET_DETAIL_PRODUCT, REMOVE_HOME, SEARCH_PRODUCT } from "../Actions/Products";
+import utils from "../../Components/utils";
+let { bringSomeLocalStorage } = utils,
+localStorage = bringSomeLocalStorage("cart");
 const initialState = {
     searchProduct: [],
-    homeProduct: [],
+    homeProduct: localStorage?.length > 0 ? localStorage : [],
     specificProduct: {},
 }
 
