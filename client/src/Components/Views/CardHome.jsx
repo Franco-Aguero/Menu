@@ -4,7 +4,7 @@ import { addHome, removeHome } from "../../Redux/Actions/Products";
 
 const CardHome = ({ name, image, id, viewHome}) => {    //options view details and delete of menu
     const dispatch = useDispatch(),
-    addingHome = () => dispatch( addHome({name,image,id})), 
+    addingHome = () => dispatch( addHome(id)), 
     removeOfHome = (id) => dispatch( removeHome(id)); 
     
     return (
@@ -27,4 +27,3 @@ const CardHome = ({ name, image, id, viewHome}) => {    //options view details a
     )
 }
 export default CardHome;
-//GET https://api.spoonacular.com/food/menuItems/424571 es para el details

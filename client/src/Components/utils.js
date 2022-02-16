@@ -1,7 +1,7 @@
 const utils = {
     totalPriceCart: ( prop ) => {
         let costProduct = 0;
-        prop.map( product => costProduct += parseInt(product.price) * parseInt(product.unit) )
+        prop.map( product => costProduct += parseInt(product.price) )
         return costProduct
     },
     addSomethingLocalStorage : (key, prop) => {

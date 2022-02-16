@@ -1,71 +1,36 @@
-import { useState } from "react";
+import { Formik } from 'formik';
+import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { Form, FormControl, Button } from "react-bootstrap";
 import { searchProduct } from "../../Redux/Actions/Products";
 
 const SearchBar = ({ handleClick }) => {
-    let [name, setName] = useState(""), dispatch = useDispatch();
-    const handleChange = (e) => setName(e.target.value)
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(name.length <= 2) return;
-        dispatch(searchProduct(name))
-        handleClick()
-    }
-    return (
-        <Form onSubmit={handleSubmit} className="d-flex" style={{width:"250px", height:"2.4rem"}}>
-            <FormControl
-            type="search"
-            placeholder="Meal..."
-            className="me-2"
-            aria-label="Search"
-            value={name}
-            onChange={handleChange}
-            />
-            <Button type="submit" variant="outline-success">Search</Button>
-        </Form>
-    )
-}
-export default SearchBar;
-
-
-/* import { useState } from "react";
-import { Form, FormControl, Button } from "react-bootstrap";
-import { Formik } from 'formik';
-const SearchBar = () => {
-    let [name, setName] = useState("");
-    const handleChange = (e) => setName(e.target.value)
-
+    let dispatch = useDispatch();
     return (
         <Formik
             initialValues={ { name:"", } }
-
-            validate={ (valores, handleSubmit) => {
-                if(valores.name.length > 2) handleSubmit()
-            }}
-
-            onSubmit={ (valores, {resertForm}) => {
-                valores.preventDefault();
-                alert(valores.name)
-                resertForm()
+            onSubmit={ (valores) => {
+                if(valores.name.length <= 2 ) return Swal.fire("3 character minimum search");
+                dispatch( searchProduct(valores.name));
+                handleClick();
             }}
         >
-            { ({values, handleSubmit, handleChange}) => (
+        { ({values, handleSubmit, handleChange}) => (
 
-                <Form onSubmit={handleSubmit} className="d-flex">
-                    <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                    id="name"
-                    value={values.name}
-                    onChange={handleChange}
-                    />
-                    <Button type="submit" variant="outline-success">Search</Button>
-                </Form>
-            )}
-        </Formik>
+            <Form onSubmit={handleSubmit} className="d-flex">
+                <FormControl
+                type="text"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+                id="name"
+                value={values.name}
+                onChange={handleChange}
+                />
+                <Button type="submit" variant="outline-success">Search</Button>
+            </Form>
+        )}
+    </Formik>
     )
 }
-export default SearchBar; */
+export default SearchBar;

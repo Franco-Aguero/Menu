@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailProduct } from "../../Redux/Actions/Products";
+import { clearDetailProduct, getDetailProduct } from "../../Redux/Actions/Products";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
+import { loadingToggleAction } from "../../Redux/Actions/Login";
 
 const DetailProduct = ({id}) => {
-    const dispatch = useDispatch(), specificProduct = useSelector( state => state.Products?.specificProduct);
+    const dispatch = useDispatch(), 
+    specificProduct = useSelector( state => state.Products?.specificProduct),
+    showSpinner = useSelector( state => state.Products.showLoading);
     useEffect( () => {
         dispatch( getDetailProduct(id))
+        dispatch( loadingToggleAction(false))
+        return () =>  dispatch(clearDetailProduct())
     },[])
     return (
         <article style={{height:"calc(100vh - 2.6rem)"}}>
@@ -41,6 +47,7 @@ const DetailProduct = ({id}) => {
             : 
                 <span>Se rompio</span>
             }
+            { showSpinner && <LoadingSpinner />}
         </article>
     )
 }
