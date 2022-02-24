@@ -4,6 +4,7 @@ import { clearDetailProduct, getDetailProduct } from "../../Redux/Actions/Produc
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import { loadingToggleAction } from "../../Redux/Actions/Login";
+import "./DetailProduct.css";
 
 const DetailProduct = ({id}) => {
     const dispatch = useDispatch(), 
@@ -15,10 +16,10 @@ const DetailProduct = ({id}) => {
         return () =>  dispatch(clearDetailProduct())
     },[])
     return (
-        <article style={{height:"calc(100vh - 2.6rem)"}}>
+        <article className="d-flex align-items-center justify-content-center" style={{minHeight:"calc(100vh - 2.6rem)"}}>
             { 
             Object.keys(specificProduct).length > 1 ?
-            <div className="d-flex align-items-center justify-content-center" style={{height:"100%", gap:"4.5rem", padding:"0 1rem"}}>
+            <div className="d-flex align-items-center justify-content-center" id="Detail__Container">
                 <div className=""> 
                     <img src={specificProduct.image} alt={specificProduct.title} />
                 </div>

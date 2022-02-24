@@ -1,0 +1,15 @@
+#Detail__Container{
+    min-height: 100%;
+    gap: 2rem;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+@media (min-width: 730px) {
+    #Detail__Container{
+        height: 100%;
+        gap: 4.5rem;
+        padding: 0 1rem;
+        flex-direction: row;
+    }
+}

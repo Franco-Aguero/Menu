@@ -12,6 +12,7 @@ console.log(user)
     <>
       <Nav/>
       <Switch>
+        <Route exact path="/" render={ () => { return user? <Redirect to="/home" /> : <Login/> } }/>
         <Route exact path="/login" render={ () => { return user? <Redirect to="/home" /> : <Login/> } }/>
         <Route exact path="/home" render={ () => { return user? <Home/> : <Redirect to="/login" /> } }/>
         <Route exact path="/details/:id" 

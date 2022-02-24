@@ -1,5 +1,5 @@
 .ContainerScroll{
-    min-width:400px;
+    min-width:326px;
     overflow:auto;
     background:#ffffff;
     padding:1rem;
@@ -16,7 +16,57 @@ background: black;
 border-radius: 6px;
 }
 
-/* .ContainerScroll__header{
-    height: 2rem;
-    background: red;
-} */
+.Home__ContainerNavBar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 1rem 0;
+}
+
+.Home__MenuUl{
+    list-style: none;
+    border-top: 1px solid #dfdfdf;
+    padding: 0;
+}
+.Home__MenuUl li{
+    border-bottom: 1px solid #dfdfdf;
+    padding: 1rem 0;
+    text-align: center;
+    transition: .5s;
+    font-size: 17px;
+    font-weight: 600;
+}
+.Home__MenuUl li:hover{
+    background: rgba(77, 74, 74, 0.473);
+}
+
+#Home__ContainerResults{
+    margin: 2.5rem auto;
+    padding-bottom: 2rem;
+    grid-template-columns: repeat(1, auto);
+    row-gap: 1rem;
+    column-gap: 2.5rem;
+}
+
+@media (min-width: 568px) {
+    .Home__ContainerNavBar{
+        width: 78%;
+    }
+    
+    #Home__ContainerResults{
+        grid-template-columns: repeat(2,auto); 
+    }
+}
+
+@media (min-width: 768px) {
+    #Home__ContainerResults{
+        grid-template-columns: repeat(3,auto); 
+    }
+}
+
+@media (min-width: 1200px) {
+    .Home__ContainerNavBar{
+        width: 60%;
+    }
+}

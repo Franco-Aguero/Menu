@@ -3,7 +3,8 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { Form, FormControl, Button } from "react-bootstrap";
 import { searchProduct } from "../../Redux/Actions/Products";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 const SearchBar = ({ handleClick }) => {
     let dispatch = useDispatch();
     return (
@@ -27,7 +28,7 @@ const SearchBar = ({ handleClick }) => {
                 value={values.name}
                 onChange={handleChange}
                 />
-                <Button type="submit" variant="outline-success">Search</Button>
+                <Button type="submit" variant="outline-success"><FontAwesomeIcon icon={faMagnifyingGlass} style={{fontSize:"1.4rem"}} /></Button>
             </Form>
         )}
     </Formik>

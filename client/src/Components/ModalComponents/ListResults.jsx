@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Modal from "../../ModalSettings/modal";
 import CardHome from "../Views/CardHome";
 import LoadingSpinner from "../Views/LoadingSpinner";
+import "./ListResults.css"
 
 const ListResults = ({ isOpenShow, closeModalShow}) => {
     let searchProducts = useSelector( state => state.Products.searchProduct.products),
@@ -14,7 +15,7 @@ const ListResults = ({ isOpenShow, closeModalShow}) => {
             <div className="ContainerScroll">
                 {
                     searchProducts?.length > 0 ?
-                    <div className="d-grid justify-content-center" style={{ height:"500px", paddingBottom:"1.5rem", gridTemplateColumns:"repeat(3,auto)", rowGap:"1rem", columnGap:"1rem"}}>                  
+                    <div className="d-grid justify-content-center" id="ListResults__ContainerResults">                  
                         {
                             searchProducts.map( el => <CardHome
                                 key={el.id}

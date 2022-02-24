@@ -11,6 +11,7 @@ import ImgDefault from "./menu.png";
 import SearchBar from "./SearchBar";
 import utils from "../utils";
 import { loadingToggleAction } from "../../Redux/Actions/Login";
+import NavBarClosed from "../ModalComponents/NavBarClosed"
 import "./indexHome.css";
 
 const Home = () => {
@@ -19,26 +20,45 @@ const Home = () => {
     let [isOpenShow, openModalShow, closeModalShow] = useModal(false), 
     [togleFlag, setTogleFlag] = useState(true),
     {addSomethingLocalStorage, totalPriceCart} = utils;
+
+    const openModalListResult = () => {
+        openModalShow();
+        handleClose();
+    }
+    const [show, setShow] = useState(false),
+    handleClose = () => setShow(false),
+    handleShow = () => setShow(true);
+
     useEffect( () => {
         if(togleFlag) return setTogleFlag( togleFlag = false );
         addSomethingLocalStorage("cart", menuProducts)
     },[menuProducts])
+    
     return (
         <article className="d-flex flex-column" style={{height: "calc(100vh - 2.6rem)"}}>
             <div className="d-flex justify-content-center" style={{width:"100%"}}>
-                <div className="w-100 d-flex align-items-center justify-content-between" style={{margin:"1rem 3rem 0"}}>
-                    <span>Full menu price: {totalPriceCart(menuProducts)}$</span>
+                <div className="Home__ContainerNavBar" >
+                    <NavBarClosed higher={8} less={10} show={show} handleShow={handleShow} handleClose={handleClose}>
+                        <ul className="Home__MenuUl">
+                            <li>
+                                Full menu price: {totalPriceCart(menuProducts)}$
+                            </li>
+                            <li onClick={openModalListResult} style={{position:"relative"}}>
+                                Search Result 
+                                { searchProducts?.length > 0 && <Spinner animation="grow" variant="success"style={{position:"absolute", top:"12px", right:"135px", width:"7px", height:"7px"}} />}
+                            </li>
+                            <li>
+                                Log Out
+                            </li>
+                        </ul>
+                    </NavBarClosed>  
                     <SearchBar handleClick={openModalShow} />
-                    <span onClick={openModalShow} style={{position:"relative", cursor:"pointer"}}>
-                        Search Result 
-                       { searchProducts?.length > 0 && <Spinner animation="grow" variant="success"style={{position:"absolute", top:"0", width:"7px", height:"7px"}} />}
-                    </span>
                 </div>
             </div>
             <>
                 {
                     menuProducts?.length > 0 ?
-                    <div className="d-grid justify-content-center" style={{margin:"2.5rem auto", paddingBottom:"2rem" , gridTemplateColumns:"repeat(3,auto)", rowGap:"1rem", columnGap:"2.5rem"}}>
+                    <div className="d-grid justify-content-center" id="Home__ContainerResults">
                         {
                         menuProducts.map( (el, index) => 
                             <Link to={`/details/${el.id}`} key={index} onClick={()=> dispatch( loadingToggleAction(true))} style={{textDecoration:"none", color:"black"}}>

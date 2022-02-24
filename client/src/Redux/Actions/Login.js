@@ -7,7 +7,7 @@ export const sendLogin = (info) => {
     return async(dispatch) => {
         try {
             dispatch( loadingToggleAction(true))
-            let { data } = await axios.post(`http://challenge-react.alkemy.org/`, info)
+            let { data } = await axios.post(`${process.env.REACT_APP_ALKEMY}/`, info)
             localStorage.setItem("tokenMenu", data.token);
             dispatch( loadingToggleAction(false))
             window.location.assign(`${process.env.REACT_APP_URL_CLIENT}/home`);
