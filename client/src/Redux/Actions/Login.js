@@ -6,8 +6,10 @@ export const LOADING_TOGGLE = "LOADING_TOGGLE";
 export const sendLogin = (info) => {
     return async(dispatch) => {
         try {
+            let oldUrl = process.env.REACT_APP_ALKEMY;
+            let newUrl = new URL("/", oldUrl);  
             dispatch( loadingToggleAction(true))
-            let { data } = await axios.post(`${process.env.REACT_APP_ALKEMY}/`, info)
+            let { data } = await axios.post(`${newUrl}`, info)
             localStorage.setItem("tokenMenu", data.token);
             dispatch( loadingToggleAction(false))
             window.location.assign(`${process.env.REACT_APP_URL_CLIENT}/home`);

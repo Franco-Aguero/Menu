@@ -24,7 +24,11 @@ const Home = () => {
     const openModalListResult = () => {
         openModalShow();
         handleClose();
-    }
+    },
+    resetToken = () => {
+        localStorage.clear();
+        return window.location.assign(`${process.env.REACT_APP_URL_CLIENT}/login`)
+    };
     const [show, setShow] = useState(false),
     handleClose = () => setShow(false),
     handleShow = () => setShow(true);
@@ -47,7 +51,7 @@ const Home = () => {
                                 Search Result 
                                 { searchProducts?.length > 0 && <Spinner animation="grow" variant="success"style={{position:"absolute", top:"12px", right:"135px", width:"7px", height:"7px"}} />}
                             </li>
-                            <li>
+                            <li onClick={resetToken}>
                                 Log Out
                             </li>
                         </ul>
